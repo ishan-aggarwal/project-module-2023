@@ -76,6 +76,7 @@ public class TaskController {
     @DeleteMapping("/tasks/{id}")
     Task deleteTask(@PathVariable("id") Integer id) {
         Optional<Task> optionalTask = taskList.stream().filter(task -> task.getId() == id).findFirst();
+
         if (optionalTask.isPresent()) {
             taskList.remove(optionalTask.get());
             return optionalTask.get();
