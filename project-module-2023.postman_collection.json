@@ -1,0 +1,414 @@
+{
+	"info": {
+		"_postman_id": "57cc511c-53d4-4017-a066-dd778a949ebd",
+		"name": "project-module-2023",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "898726"
+	},
+	"item": [
+		{
+			"name": "spring-taskmgr",
+			"item": [
+				{
+					"name": "Show all existing tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a task by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/tasks/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"tasks",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a task by given id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/tasks/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"tasks",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a task by given id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"title\": \"Additional Task Added Updated now\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/tasks/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"tasks",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"title\": \"Additional Task Added\",\r\n        \"description\": \"Description : Added a new task\",\r\n        \"dueDate\": \"2023-03-01\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "spring-taskmgr-v2",
+			"item": [
+				{
+					"name": "Show all existing tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7766/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7766",
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show all existing notes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7766/notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7766",
+							"path": [
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a task by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7766/tasks/65",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7766",
+							"path": [
+								"tasks",
+								"65"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Note by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7766/notes/65",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7766",
+							"path": [
+								"notes",
+								"65"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Tasks By Title",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7766/tasks?title=Test Task-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7766",
+							"path": [
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Test Task-1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Tasks By Completed Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7766/tasks?completed=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7766",
+							"path": [
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "completed",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Notes For Task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7766/tasks/65/notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7766",
+							"path": [
+								"tasks",
+								"65",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Note For Task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"First note for task\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7766/tasks/66/notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7766",
+							"path": [
+								"tasks",
+								"66",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Note For Task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7766/tasks/65/notes/97",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7766",
+							"path": [
+								"tasks",
+								"65",
+								"notes",
+								"97"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"createdAt\":\"2023-02-12\",\r\n        \"title\": \"Test Task-3\",\r\n        \"description\": \"Test Task-3 Description\",\r\n        \"completed\" : false,\r\n        \"dueDate\": \"2023-04-01\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7766/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7766",
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a task by given id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7766/tasks/34",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7766",
+							"path": [
+								"tasks",
+								"34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a task by given id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"title\": \"Additional Task Added Updated\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/tasks/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"tasks",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
