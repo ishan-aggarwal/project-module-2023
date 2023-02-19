@@ -2,7 +2,6 @@ package com.ishan.blogapi.comments;
 
 import com.ishan.blogapi.articles.ArticleEntity;
 import com.ishan.blogapi.articles.ArticlesRepository;
-import com.ishan.blogapi.articles.ArticlesService;
 import com.ishan.blogapi.comments.dtos.CreateCommentDTO;
 import com.ishan.blogapi.users.UserEntity;
 import com.ishan.blogapi.users.UsersRepository;
@@ -11,7 +10,6 @@ import org.mockito.Mock;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.ui.ModelMap;
 
 import java.util.Optional;
 
