@@ -3,20 +3,18 @@ package com.ishan.blogapi.comments;
 import com.ishan.blogapi.articles.ArticleEntity;
 import com.ishan.blogapi.commons.BaseEntity;
 import com.ishan.blogapi.users.UserEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "comments")
-@Data
 @Builder
-@NoArgsConstructor
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class CommentEntity extends BaseEntity {
 
     @Column(nullable = false, length = 100)

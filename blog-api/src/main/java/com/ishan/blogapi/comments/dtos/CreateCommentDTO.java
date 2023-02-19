@@ -1,9 +1,9 @@
 package com.ishan.blogapi.comments.dtos;
 
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
 @Data
+@Builder
 public class CreateCommentDTO {
 
     @NonNull

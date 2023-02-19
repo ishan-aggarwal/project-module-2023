@@ -38,9 +38,9 @@ public class UsersServiceTests {
     @Test
     public void testCreateUser() {
         var newUserDTO = new CreateUserDTO();
-        newUserDTO.setEmail("arnav@email.com");
-        newUserDTO.setPassword("password");
-        newUserDTO.setUsername("arnav123");
+        newUserDTO.setEmail("ishan.aggarwal@gmail.com");
+        newUserDTO.setPassword("Password123");
+        newUserDTO.setUsername("ishan-aggarwal");
         var savedUser = getUsersService().createUser(newUserDTO);
         assertNotNull(savedUser);
     }

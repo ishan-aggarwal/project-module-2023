@@ -1,12 +1,12 @@
 package com.ishan.blogapi.users.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class CreateUserDTO {
     String email;
     String username;

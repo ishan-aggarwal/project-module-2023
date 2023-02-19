@@ -8,10 +8,11 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "users")
-@Data
 @Builder
-@NoArgsConstructor
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserEntity extends BaseEntity {
 
     @Column(unique = true, nullable = false, length = 50)

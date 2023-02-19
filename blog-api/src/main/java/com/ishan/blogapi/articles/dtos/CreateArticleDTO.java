@@ -1,11 +1,13 @@
 package com.ishan.blogapi.articles.dtos;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
 import java.util.List;
 
 @Data
+@Builder
 public class CreateArticleDTO {
 
     @NonNull

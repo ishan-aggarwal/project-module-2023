@@ -9,7 +9,8 @@ import java.util.List;
 
 @Entity(name = "articles")
 @Builder
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ArticleEntity extends BaseEntity {
@@ -29,7 +30,8 @@ public class ArticleEntity extends BaseEntity {
     // entity that contains the collection of elements (i.e. the article table)
     private List<String> tagList; // TODO: Implement this
 
-    @ManyToOne // means that this is a many-to-one relationship with the UserEntity
+    @ManyToOne(cascade = CascadeType.ALL)
+    // means that this is a many-to-one relationship with the UserEntity
     // that means that a single user can have many articles
     UserEntity author;
 
