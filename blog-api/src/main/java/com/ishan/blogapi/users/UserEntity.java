@@ -2,15 +2,16 @@ package com.ishan.blogapi.users;
 
 import com.ishan.blogapi.articles.ArticleEntity;
 import com.ishan.blogapi.commons.BaseEntity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "users")
-@Setter
-@Getter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity extends BaseEntity {
 
     @Column(unique = true, nullable = false, length = 50)

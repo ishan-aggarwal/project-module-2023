@@ -2,11 +2,16 @@ package com.ishan.blogapi.articles;
 
 import com.ishan.blogapi.commons.BaseEntity;
 import com.ishan.blogapi.users.UserEntity;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "articles")
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ArticleEntity extends BaseEntity {
 
     @Column(unique = true, nullable = false, length = 150)
