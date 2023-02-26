@@ -409,6 +409,735 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "blog-api",
+			"item": [
+				{
+					"name": "articles",
+					"item": [
+						{
+							"name": "comments",
+							"item": [
+								{
+									"name": "Get All Comments For Article (Paginated)",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8888/articles/:article-slug/comments?page=0&limit=10",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8888",
+											"path": [
+												"articles",
+												":article-slug",
+												"comments"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												}
+											],
+											"variable": [
+												{
+													"key": "article-slug",
+													"value": "10-tips-for-writing-better-code"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Comment For Article",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "value",
+													"value": "1afd4680-5db1-4472-a4e3-4be92e1f4c62",
+													"type": "string"
+												},
+												{
+													"key": "key",
+													"value": "X-Auth-Token",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"great article\",\r\n    \"body\" : \"this was a great article, loved reading it!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8888/articles/:article-slug/comments",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8888",
+											"path": [
+												"articles",
+												":article-slug",
+												"comments"
+											],
+											"variable": [
+												{
+													"key": "article-slug",
+													"value": "10-tips-for-writing-better-code"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Comment For Article Copy",
+									"request": {
+										"auth": {
+											"type": "apikey",
+											"apikey": [
+												{
+													"key": "value",
+													"value": "1afd4680-5db1-4472-a4e3-4be92e1f4c62",
+													"type": "string"
+												},
+												{
+													"key": "key",
+													"value": "X-Auth-Token",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8888/articles/:article-slug/comments/16",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8888",
+											"path": [
+												"articles",
+												":article-slug",
+												"comments",
+												"16"
+											],
+											"variable": [
+												{
+													"key": "article-slug",
+													"value": "10-tips-for-writing-better-code"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Create Article",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiYmxvZy1hcGkiLCJleHAiOjE2Nzc0NDUwMjYsImlhdCI6MTY3NzM1ODYyNn0.sxUqgYAupqwnWoGafcOQov2Dx7l7lA5Hw51ntVlcdB8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Functional Programming 101: An Introduction to Functional Programming Concepts\",\r\n    \"subtitle\": \"Learn about the basics of functional programming and how it differs from object-oriented programming\",\r\n    \"body\": \"Functional programming is a programming paradigm that emphasizes the use of pure functions and immutable data structures. In this article, we will introduce the basic concepts of functional programming, including higher-order functions, lambda expressions, and recursion. We will also compare and contrast functional programming with object-oriented programming.\",\r\n    \"tagList\": [\"functional programming\", \"programming\", \"pure functions\", \"immutable data\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8888/articles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"articles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Article",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiYmxvZy1hcGkiLCJleHAiOjE2Nzc0ODgxNDAsImlhdCI6MTY3NzQwMTc0MH0.JElC6Tn4w7WNrwGO2GqSW1gG-CLId_8X8PRjBSosFnE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"subtitle\": \"Learn how to apply the SOLID principles to write better, more maintainable code - By Ishan1\",\r\n        \"body\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in justo risus. Proin vel mi eget nulla tincidunt posuere. Sed sagittis risus id risus malesuada, non laoreet tellus ultricies. Sed id purus sit amet enim aliquam fringilla. Duis ultricies fringilla magna, ac ultricies dolor aliquet at. Nullam lacinia, nisl vel fermentum convallis, nibh ex rutrum quam, ac blandit eros odio eu nulla. In lacinia aliquet magna, eu ullamcorper quam euismod eu. Sed vitae sapien quis ex rhoncus tincidunt. In at justo at mauris scelerisque pretium. Praesent id arcu dui. Nam fringilla faucibus tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum in erat quis magna bibendum iaculis. Suspendisse hendrerit, ipsum eu lobortis molestie, velit elit accumsan elit, in lobortis quam ex quis turpis. In hac habitasse platea dictumst.\",\r\n        \"tagList\": [\r\n            \"programming\",\r\n            \"by-ishan-1\",\r\n            \"object-oriented programming\",\r\n            \"SOLID principles\",\r\n            \"code quality\",\r\n            \"maintainability\"\r\n        ]\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8888/articles/:article-slug",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"articles",
+										":article-slug"
+									],
+									"variable": [
+										{
+											"key": "article-slug",
+											"value": "how-to-use-the-solid-principles-of-object-oriented-design-to-improve-your-code-quality-and-maintainability"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Articles (Paginated)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/articles?page=0&limit=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"articles"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Articles By Author (Paginated)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/articles?author=ishan1&page=0&limit=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"articles"
+									],
+									"query": [
+										{
+											"key": "author",
+											"value": "ishan1"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Articles By Tag (Paginated)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/articles?tag=programming&page=0&limit=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"articles"
+									],
+									"query": [
+										{
+											"key": "tag",
+											"value": "programming"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "limit",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Article By Slug",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/articles/:slug",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"articles",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "java-basics-for-beginners-3eabef39"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "profiles",
+					"item": [
+						{
+							"name": "Get All Profiles (Paginated)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/profiles?page=1&limit=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"profiles"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Profile By UserName",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/profiles/:username",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"profiles",
+										":username"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "ishan3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "authors",
+					"item": [
+						{
+							"name": "Create User (SignUp)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"ishan2@email.com\",\r\n    \"username\" : \"ishan2\", \r\n    \"password\" : \"pass2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8888/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Login",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"ishan1\", \r\n    \"password\" : \"pass1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8888/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Login (With API Key)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"ishan1\", \r\n    \"password\" : \"pass1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8888/users/login?token=auth_token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"users",
+										"login"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "auth_token"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "dummy",
+					"item": [
+						{
+							"name": "Get Articles Public",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/articles/dummy",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"articles",
+										"dummy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Articles Private - Bearer Token",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiYmxvZy1hcGkiLCJleHAiOjE2Nzc0Mjc3NTUsImlhdCI6MTY3NzM0MTM1NX0.9gfLOA5-u50OYXFDngYn5TN0EIHy_GTnqU0ffcDJEdw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/articles/dummy/private",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"articles",
+										"dummy",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Articles Private - Bearer Token Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiYmxvZy1hcGkiLCJleHAiOjE2Nzc0Mjc3NzksImlhdCI6MTY3NzM0MTM3OX0.Pz1hldvaArDX_7-rNUit7VyCBb61bhJY7_HG4JoIY1w",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/articles/dummy/private",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"articles",
+										"dummy",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Articles Private (1) - API Key",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "1eb2fc5b-ac1a-4d2b-ac2a-b6e5b3e141cc",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/articles/dummy/private",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"articles",
+										"dummy",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Articles Private (2) - API Key Copy",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "bbb87ca6-840b-488f-b0a4-dd609fba872b",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "X-Auth-Token",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/articles/dummy/private",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"articles",
+										"dummy",
+										"private"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiYmxvZy1hcGkiLCJleHAiOjE2Nzc0MDIzNDYsImlhdCI6MTY3NzMxNTk0Nn0.O-amdks4w11zdj2BfigiqSi--ZVbTXj667eKONU61FM",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		}
 	]
 }
