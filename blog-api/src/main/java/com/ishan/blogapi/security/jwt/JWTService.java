@@ -8,6 +8,12 @@ import java.util.Date;
 
 @Service
 public class JWTService {
+
+    //    @Value("${app.jwtSecret}")
+//    private String jwtSecret;
+//
+//    @Value("${app.jwtExpirationMs}")
+//    private long jwtExpirationMs;
     private final Algorithm algorithm = Algorithm.HMAC256("SECRET SIGNING KEY (should be in env or config)");
 
     public String createJWT(Integer userId) {
@@ -24,6 +30,16 @@ public class JWTService {
                 .sign(algorithm);
         return token;
     }
+
+//    private Algorithm algorithm() {
+//        return Algorithm.HMAC256(jwtSecret);
+//    }
+
+//    private Key key() {
+//        return Keys.hmacShaKeyFor(
+//                Decoders.BASE64.decode(jwtSecret)
+//        );
+//    }
 
     public Integer getUserIdFromJWT(String jwt) {
         var subject = JWT.decode(jwt).getSubject();

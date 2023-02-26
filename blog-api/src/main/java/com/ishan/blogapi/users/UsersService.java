@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UsersService {
     private final UsersRepository usersRepository;
@@ -27,7 +29,11 @@ public class UsersService {
 
     public UserResponseDTO createUser(CreateUserDTO createUserDTO) {
         // TODO: Validate email
-        // TODO: Check if username already exists
+        Optional<UserEntity> userEntity = usersRepository.findByUsername(createUserDTO.getUsername());
+        if (userEntity.isPresent()) {
+            throw new UserAlreadyPresentException(createUserDTO.getUsername());
+        }
+
         var newUserEntity = modelMapper.map(createUserDTO, UserEntity.class);
         newUserEntity.setPassword(passwordEncoder.encode(createUserDTO.getPassword()));
         var savedUser = usersRepository.save(newUserEntity);
@@ -38,11 +44,11 @@ public class UsersService {
     }
 
     public UserResponseDTO loginUser(LoginUserDTO loginUserDTO, AuthType authType) {
-        var userEntity = usersRepository.findByUsername(loginUserDTO.getUsername());
-        if (userEntity == null) {
+        Optional<UserEntity> userEntity = usersRepository.findByUsername(loginUserDTO.getUsername());
+        if (userEntity.isEmpty()) {
             throw new UserNotFoundException(loginUserDTO.getUsername());
         }
-        var passMatch = passwordEncoder.matches(loginUserDTO.getPassword(), userEntity.getPassword());
+        var passMatch = passwordEncoder.matches(loginUserDTO.getPassword(), userEntity.get().getPassword());
         if (!passMatch) {
             throw new IllegalArgumentException("Incorrect password");
         }
@@ -50,16 +56,25 @@ public class UsersService {
 
         switch (authType) {
             case JWT:
-                userResponseDTO.setToken(jwtService.createJWT(userEntity.getId()));
+                userResponseDTO.setToken(jwtService.createJWT(userEntity.get().getId()));
                 break;
             case AUTH_TOKEN:
-                userResponseDTO.setToken(authTokenService.createAuthToken(userEntity).toString());
+                userResponseDTO.setToken(authTokenService.createAuthToken(userEntity.get()).toString());
                 break;
         }
 
         return userResponseDTO;
     }
 
+    public static class UserAlreadyPresentException extends IllegalArgumentException {
+        public UserAlreadyPresentException(Integer id) {
+            super("User with id: " + id + " already present");
+        }
+
+        public UserAlreadyPresentException(String username) {
+            super("User with username: " + username + " already present");
+        }
+    }
 
     public static class UserNotFoundException extends IllegalArgumentException {
         public UserNotFoundException(Integer id) {

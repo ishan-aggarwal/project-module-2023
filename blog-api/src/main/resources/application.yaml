@@ -10,9 +10,13 @@ spring:
     password: blog_password
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         format_sql: true
         use_sql_comments: true
+
+app:
+    jwtSecret: daf66e01593f61a15b857cf433aae03a005812b31234e149036bcc8dee755dbb
+    jwtExpirationMs: 86400000

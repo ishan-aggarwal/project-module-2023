@@ -8,7 +8,6 @@ import java.util.List;
 @Data
 @Builder
 public class UpdateArticleDTO {
-    private String title;
     private String subtitle;
     private String body;
     private List<String> tagList;

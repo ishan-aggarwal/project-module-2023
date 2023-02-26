@@ -1,13 +1,17 @@
 package com.ishan.blogapi.articles;
 
+import com.ishan.blogapi.articles.dtos.ArticleResponseDTO;
 import com.ishan.blogapi.articles.dtos.CreateArticleDTO;
+import com.ishan.blogapi.comments.CommentsRepository;
 import com.ishan.blogapi.users.UserEntity;
 import com.ishan.blogapi.users.UsersRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,11 +26,15 @@ public class ArticlesServiceTest {
     @Mock
     private UsersRepository usersRepository;
 
+    @Mock
+    private CommentsRepository commentsRepository;
+
     private ArticlesService articlesService;
 
     private ArticlesService getArticlesService() {
         if (articlesService == null) {
-            articlesService = new ArticlesService(articlesRepository, usersRepository);
+            var modelMapper = new ModelMapper();
+            articlesService = new ArticlesService(articlesRepository, usersRepository, commentsRepository, modelMapper);
         }
         return articlesService;
     }
@@ -47,9 +55,9 @@ public class ArticlesServiceTest {
                 .build();
 
         when(usersRepository.findById(1)).thenReturn(Optional.of(UserEntity.builder().username("ishan").email("ishan@gmail.com").password("password").build()));
-        getArticlesService().createArticle(1, createArticleDTO);
+        ArticleResponseDTO articleResponseDTO = getArticlesService().createArticle(1, createArticleDTO);
 
-        var article = getArticlesService().getArticleBySlug("this-is-a-test-title");
+        var article = getArticlesService().getArticleBySlug(articleResponseDTO.getSlug());
         assertNotNull(article);
         assertEquals("This is a test title", article.getTitle());
     }
@@ -61,22 +69,24 @@ public class ArticlesServiceTest {
                 .title("This is a test title")
                 .body("This is a test article")
                 .subtitle("This is a test subtitle")
+                .tagList(List.of("tag1", "tag2"))
                 .build();
 
         when(usersRepository.findById(1)).thenReturn(Optional.of(UserEntity.builder().username("ishan").email("ishan@gmail.com").password("password").build()));
-        ArticleEntity article = getArticlesService().createArticle(1, createArticleDTO);
+        ArticleResponseDTO article = getArticlesService().createArticle(1, createArticleDTO);
         assertNotNull(article);
         assertEquals("This is a test title", article.getTitle());
         assertEquals("This is a test subtitle", article.getSubtitle());
         assertEquals("This is a test article", article.getBody());
-        assertEquals("this-is-a-test-title", article.getSlug());
+        assertTrue(article.getSlug().startsWith("this-is-a-test-title"));
+        assertEquals("ishan", article.getUsername());
+        assertEquals(2, article.getTagList().size());
+        assertEquals("ishan@gmail.com", article.getEmail());
     }
 
     @Test
     public void testGetArticleBySlugAndExpectArticleNotFoundException() {
-        ArticlesService.ArticleNotFoundException exception = assertThrows(ArticlesService.ArticleNotFoundException.class, () -> {
-            getArticlesService().getArticleBySlug("this-is-a-test-title");
-        });
+        ArticlesService.ArticleNotFoundException exception = assertThrows(ArticlesService.ArticleNotFoundException.class, () -> getArticlesService().getArticleBySlug("this-is-a-test-title"));
         assertNotNull(exception);
         assertEquals("Article this-is-a-test-title not found", exception.getMessage());
     }
